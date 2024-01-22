@@ -1,18 +1,38 @@
-კინოფილების აპლიკაცია
+# Movie Application
 
-მიზანი: 
-ეს გახლავთ აპლიკაცია, რომელიც საშუალებას აძლევს მომხმარებელს გაეცნოს და მოძებნოს ნებისმიერი სახის ფილმი. აპლიკაციაში რეგისტრაციის შემდეგ, მომხმარებელს შეუძლია თვალი ადევნოს ახალ, პოპულარულ ან სხვა სახის ფილმებს, ან ჟანრების მიხედვით გააკეთოს არჩევანი. იმ შემთხვევაში თუ მომხმარებელს დააინტერესებს ესა თუ ის ფილმი, მას საშუალება აქვს ნახოს ამ ფილმის დეტალური აღწერა. აპლიკაციის მიზანია, მომხმარებელს გაუმარტივოს ფილმების ძიების პროცესი და შეუქნას სივრცე, სადაც იგი შეძლებს სურვილის მიხედვით მოიძიოს სასურველი ფილმი.
+## Table of content
+* [Purpose](Purpose)
+* [How to use](How_to_Use)
+* [Application architecture](Application_Architecture)
 
-გამოყენება: 
-გამოყენებისათვის საჭიროა მომხმარებელმა გაიაროს ავტორიზაცია პირველ გვერდზე, ხოლო თუ ჯერ არ არის დარეგისტრირებული “Register now” ღილაკზე დაჭერით გადავა რეგისტრაციის გვერდზე. რეგისტრაციისათვის საწიროა ვალიდური მეილის მისამართისა და პაროლის შეყვანა, პაროლი საჭიროა განმეორებით შეიყვანოს. მონაცემების შეყვანის შემდეგ მონაცემები ავტომატურად შეივსება ავტორიზაციის გვერდზე და მხოლოდ “Login“ ღილაკზე დაჭერა იქნება საჭირო. ავტორიზაციის შემდეგ მომხამრებელი აღმოჩნდება მთავარ გვერდზე, სადაც ჩანს პოპულარული, ტრენდული ახალი და სხვა ფილმები. მომხამრებელს შეუძლია ნებისმიერ მომენტში დააჭიროს იმ ფილმს თითი და ის აღმოჩნდება ფილმის დეტალურ აღწერის გვერდზე. უკან დაბრუნების სურვილის შემთხვევაში მომხმარებელმა უნდა დააჭიროს უკან დაბრუნების ღილაკს. მომხმარებელს შეუძლია შევიდეს თავის პირად გვერდზე, მარჯვენა ზედა კუთხეში მდებარე ღილაკზე დაჭერით, სადაც მომხმარებელს გამოუჩნდება თავისი პირადი მონაცემები და “Logout” ღილაკი, რომელზე დაჭერის შემთხვევაშიც მომხმარებელი დაბრუნდება ავტორიზაციის გვერდზე და აპლიკაციაში შესასვლელად საჭირო იქნება ხელახალი ავტორიზაცია. სანამ მომხმარებელი არ დააჭერს “Logout” ღილაკს, მანამდე მომხმარებელს ნებისმიერ დროს შეუძლია აპლიკაცია გახნა და პირდაპირ მთავარ გვერდზე მოხედვრა. მთავარ გვერდზე „All movies“ ღილაკი, რომელზე დაჭერისას მომხმარებელი აღმოჩნდება ახალ გვერდზე, სადაც ყველა ფილმი და ყველა ჟანრი არის. მომხმარებელს შეუძლია თავისუფლად სქროლოს და აარჩიოს ფილმი, ან ჟანრზე თითის დაჭერის შემთხვევასი აღმოჩნდება მხოლოდ არჩეული ჟანრის ფილმები. ჟანრის ღილაკზე ხელმეორედ დაჭერით, ფილტრი გაქრება და ისევ ყველა ფილმი გამოჩნდება.
 
-აპლიკაციის აგებულება: 
-•	MVI
-•	Clean architecture
-•	Dependency Injection
-•	Firebase
-•	Datastore
-•	Moshi
+## Purpose:
+This is movie application, which enables user to create personal account, browse movies and find detailed information about them.
 
-ავტორიზაცია და რეგისტრაცია ხდება Firebase-ის გამოყენებით. სანამ ავტორიზაციას გაივლის მოხმარებელი ხდება მეილისა და პაროლის ვალიდურობის დადგენა. მომხმარებლის მიერ არასწორი მონაცემის შეყვანის შემთხვევაში, ან რაიმე სხვა ხარვეზის შემთხვევასი მომხმარებელი მიიღებს შესაფერის Toast შეტყობინებას. ვალიდურობის გავლის შემდეგ ხდება მომხმარებლის სესიის შენახვა Datastore-ში, რაც შემდგომ საშუალებას აძლევს მომხმარებელს ავტორიზაციის გავლის გარეშე შევიდეს აპლიკაციაში. იმისთვის რომ სესია დასრულდეს, საჭიროა მომხმარებელი შევიდეს Account ფრაგმენტზე და დააჭიროს “Logout“ ღილაკს, რაც გაასუფთავებს Datastore-ს და დაასრულებს სესიას. ავტორიზაციის გავლის შემდეგ მომხარებელი ხდება Main ფრაგმენტზე. აქ გამოყენებული Nested Recycler Adapter. ხდება 4 განსხვავებული მონაცემების Fetching. ამ მონაცემების წამოსარებად 1 ლინკი იყო საჭირო, რომელსაც ეცვლება Path-ის ერთი ნაწილი, რაც შემდეგომ განსაზღვრავს რომელი ტიპის მონაცემები წამოიღოს(პოპულარული, ტრენდული თუ სხვა). Viewmmodel-ში მონაცემების შეგოვებისას გამოყენებული იქნა for loop-ი რათა 4 სხვადასხვა ქოლექთით არ დანაგვიანებულიყო კოდი. List ფრაგმენტზე გამოყენებული არის 2 Recycler Adapter. პირველს დისპლეიზე გამოაქვს და-fetch-ებული ჟანრების მონაცემები, რომლითაც შემდგომში შესაძლებელია ფილტრი, ხოლო მეორე რისაიკლერს გამოაქვს უშუალოდ ფილმების მონაცემები დისპლეიზე. როდესაც ფრაგმენტი აქტიურდება ხდება ფილმების მთლიანი ბაზის და-fetch-ვა, ხოლო ყოველი ფილტრის ამორჩევისას, ახალი მოთხოვნის გაგზავნა და ხელახალი და-fetch-ვა ხდება დისპლეიზე. ფილმზე დაჭერის შემთხვევაში, დაჭერილი ფილმის ID მონაცემები ეგზავნება MovieDetailed ფრაგმენტს, ხოლო ფრაგმენტი თავის მხრივ აკეთებს ახალ მოთხოვნას და მიღებული აიდის საშუალებით ეძებს აღნიშნულ ფილმს, fetch-ავს მიღებულ მონაცემებს და გამოაქვს დისპლეიზე.
+
+## How to Use:
+To use the app, the user needs to go through authorization on the login page. In case, user is not registered yet, they can go to the registration page by pressing the "Register now" button. It is necessary to enter a valid e-mail address and password for registration, the password must be repeated. After entering the valid data, the data will be automatically filled in the login page and only the "Login" button is needed be pressed. 
+
+After authorization, the user will be navigated to the main page where they can see popular, trending, new and other movies. A user can tap on any movie they are interested at any time and it will navigate them to the movie's detailed description page. If you want to go back, the user has to press the back button. By pressing "All movies" button on the main page when the user will be naviagted on a new page where all movies and all genres are. The user can freely scroll and select a movie, or if he clicks on a genre, only movies of the selected genre will appear. Clicking the genre button again will remove the filter and show all movies again.
+
+The user can enter his personal page by pressing the button in the upper right corner, where the user will see his personal data and the "Logout" button. If Logout button is pressed, the user will be returned to the authorization page and re-authorization will be required to enter the application. Until the user clicks the “Logout” button, the user can open the application at any time and go directly to the main page. 
+
+
+## Application Architecture:
+
+* MVI
+* Clean Architecture
+* Dependency Injection
+*	Firebase
+*	Datastore
+* Moshi
+* Splash Screen
+* View Model
+* View Binding
+
+### URL
+Data is fetched from URL: https://api.themoviedb.org
+
+
+
 
