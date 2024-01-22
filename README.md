@@ -1,9 +1,9 @@
 # Movie Application
 
 ## Table of content
-* [Purpose](Purpose)
-* [How to use](How_to_Use)
-* [Application architecture](Application_Architecture)
+* [Purpose](https://github.com/agabunia/midterm-project?tab=readme-ov-file#purpose)
+* [How to use](https://github.com/agabunia/midterm-project?tab=readme-ov-file#how-to-use)
+* [Application architecture](https://github.com/agabunia/midterm-project?tab=readme-ov-file#application-architecture)
 
 
 ## Purpose:
